@@ -1,6 +1,6 @@
 'use client'
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import { ArrowUpRight, Phone, Database, Target, Users, TrendingUp } from 'lucide-react';
 
 export default function AboutSection() {
@@ -14,6 +14,37 @@ export default function AboutSection() {
     "IT Consulting",
     "Technology Strategy"
   ];
+
+  const container: Variants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const item: Variants = {
+    hidden: { opacity: 0, y: 50 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  };
+
+  const starVariant: Variants = {
+    twinkle: {
+      opacity: [0.5, 1, 0.5],
+      transition: {
+        duration: 1.5,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const y1 = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
+  const y2 = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   return (
     <section className="bg-black text-white">
@@ -31,29 +62,35 @@ export default function AboutSection() {
 
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+            <motion.div style={{ y: y1 }} whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="relative rounded-3xl overflow-hidden shadow-2xl">
               <img
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop"
                 alt="Team collaboration"
                 className="w-full h-auto"
               />
-            </div>
+            </motion.div>
 
             {/* Bottom Image */}
-            <div className="mt-6 rounded-3xl overflow-hidden shadow-2xl">
+            <motion.div style={{ y: y2 }} whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="mt-6 rounded-3xl overflow-hidden shadow-2xl">
               <img
                 src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop"
                 alt="Team working"
                 className="w-full h-auto"
               />
-            </div>
+            </motion.div>
 
 
             <div className="absolute -bottom-8 -left-8 grid grid-cols-5 gap-2">
               {[...Array(15)].map((_, i) => (
-                <div key={i} className="text-lime-400 text-xl">✱</div>
+                <motion.div
+                  key={i}
+                  variants={starVariant}
+                  animate="twinkle"
+                  style={{ transitionDelay: `${i * 0.1}s` }}
+                  className="text-lime-400 text-xl"
+                >✱</motion.div>
               ))}
             </div>
 
@@ -63,25 +100,30 @@ export default function AboutSection() {
             </div>
           </div>
 
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            <motion.div variants={item} className="flex items-center space-x-2 mb-4">
               <div className="w-6 h-6 bg-lime-400 rounded-full flex items-center justify-center">
                 <div className="w-3 h-3 border-2 border-black rounded"></div>
               </div>
               <span className="text-sm uppercase tracking-wider text-lime-400">About Us</span>
-            </div>
+            </motion.div>
 
-            <h2 className="text-5xl font-bold mb-6 leading-tight">
+            <motion.h2 variants={item} className="text-5xl font-bold mb-6 leading-tight">
               Empowering brand with <span className="text-lime-400">innovative</span><br />
               digital solutions
-            </h2>
+            </motion.h2>
 
-            <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+            <motion.p variants={item} className="text-gray-400 text-lg mb-8 leading-relaxed">
               We specialize in creating innovative digital solutions that elevate your brand,
               engage your audience, and drive measurable success.
-            </p>
+            </motion.p>
 
-            <div className="bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-6 mb-4">
+            <motion.div variants={item} className="bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-6 mb-4">
               <div className="grid grid-cols-2 gap-6">
                 <div className="flex items-start space-x-3">
                   <motion.div
@@ -135,10 +177,10 @@ export default function AboutSection() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* CTA */}
-            <div className="flex items-center space-x-6">
+            <motion.div variants={item} className="flex items-center space-x-6">
               <button className="bg-lime-400 text-black px-8 py-4 rounded-full font-semibold hover:bg-lime-300 transition flex items-center space-x-2 group">
                 <span>More About</span>
                 <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform">
@@ -157,8 +199,8 @@ export default function AboutSection() {
                   </a>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
 
@@ -172,7 +214,7 @@ export default function AboutSection() {
           }
         }
         .animate-marquee {
-          animation: marquee 30s linear infinite;
+          animation: marquee 5s linear infinite;
         }
       `}</style>
     </section>

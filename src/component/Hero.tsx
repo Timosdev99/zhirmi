@@ -1,9 +1,21 @@
 
 'use client'
-import React, { useState } from 'react';
-import { Menu, X, Facebook, Instagram, Twitter, Phone, Mail, MapPin, FileText, ShoppingCart } from 'lucide-react';
+import React from 'react';
+import { motion, Variants } from 'framer-motion';
+import { FileText, ShoppingCart } from 'lucide-react';
+import RatingCounter from './RatingCounter';
 
 export default function Hero() {
+
+  const textVariant: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
+  };
+
+  const delayedVariant: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.3 } }
+  };
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -11,7 +23,10 @@ export default function Hero() {
 
       <div className="relative min-h-screen flex items-center">
 
-        <div
+        <motion.div
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5, ease: 'easeOut' }}
           className="absolute inset-0 z-0"
           style={{
             backgroundImage: 'url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&h=900&fit=crop)',
@@ -20,28 +35,35 @@ export default function Hero() {
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50"></div>
-        </div>
+        </motion.div>
 
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
-          <div className="max-w-4xl">
-            <div className="flex items-center space-x-2 mb-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ staggerChildren: 0.2 }}
+            className="max-w-4xl"
+          >
+            <motion.div variants={textVariant} className="flex items-center space-x-2 mb-6">
               <div className="w-8 h-8 bg-lime-400 rounded-full flex items-center justify-center">
                 <div className="w-4 h-4 border-2 border-black rounded"></div>
               </div>
               <span className="text-sm uppercase tracking-wider">Welcome to Zhirmitech Web Agency</span>
-            </div>
+            </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+            <motion.h1 variants={textVariant} className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
               YOUR VISION, OUR
               <br />
               <span className="text-lime-400">CREATIVE EXPERTISE</span>
-            </h1>
+            </motion.h1>
 
-            <div className="flex flex-wrap items-start gap-12">
+            <motion.div variants={delayedVariant} className="flex flex-wrap items-start gap-12">
+              {/* Rating */}
               <div>
                 <div className="flex items-baseline space-x-2 mb-2">
-                  <span className="text-6xl font-bold">4.8</span>
+                  <RatingCounter />
                   <span className="text-gray-400">(5k+reviews)</span>
                 </div>
                 <div className="flex space-x-1 mb-3">
@@ -56,7 +78,7 @@ export default function Hero() {
                 </p>
               </div>
 
-              {/* CTA */}
+              {/* Description and CTA */}
               <div>
                 <p className="text-xl mb-8 text-gray-300">
                   We craft innovative websites<br />and digital solutions.
@@ -86,22 +108,24 @@ export default function Hero() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
 
-
-
-
-
       <div className="fixed top-1/2 right-8 -translate-y-1/2 space-y-4 z-50">
-        <button className="w-14 h-14 bg-white text-black rounded-lg flex items-center justify-center hover:bg-lime-400 transition-all duration-300 shadow-lg">
+        <motion.button
+          whileHover={{ scale: 1.1, backgroundColor: '#a3e635' }}
+          className="w-14 h-14 bg-white text-black rounded-lg flex items-center justify-center shadow-lg"
+        >
           <FileText className="w-6 h-6" />
-        </button>
-        <button className="w-14 h-14 bg-white text-black rounded-lg flex items-center justify-center hover:bg-lime-400 transition-all duration-300 shadow-lg">
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.1, backgroundColor: '#a3e635' }}
+          className="w-14 h-14 bg-white text-black rounded-lg flex items-center justify-center shadow-lg"
+        >
           <ShoppingCart className="w-6 h-6" />
-        </button>
+        </motion.button>
       </div>
 
       <style jsx>{`
