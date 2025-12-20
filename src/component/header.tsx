@@ -5,6 +5,7 @@ import { motion, Variants } from 'framer-motion';
 import ContactSidebar from './contactSidebar';
 import { Menu, X, Facebook, Instagram, Twitter, Phone, Mail, MapPin } from 'lucide-react';
 
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false)
@@ -73,21 +74,22 @@ export default function Header() {
           {/* Desktop Navigation */}
           <div className="hidden text-xl md:flex items-center space-x-8">
             <motion.a
-              href="#"
+              href="/"
               whileHover={{ scale: 1.1, color: '#a3e635' }}
               className="text-lime-400 hover:text-lime-300 transition-colors duration-200"
             >
               Home
             </motion.a>
             <motion.a
-              href="#"
+              href="/about"
               whileHover={{ scale: 1.1, color: '#a3e635' }}
               className="text-white hover:text-lime-400 transition-colors duration-200"
             >
               About Us
+
             </motion.a>
             <motion.a
-              href="#"
+              href="/service"
               whileHover={{ scale: 1.1, color: '#a3e635' }}
               className="text-white hover:text-lime-400 transition-colors duration-200"
             >

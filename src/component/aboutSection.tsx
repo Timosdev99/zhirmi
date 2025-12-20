@@ -49,7 +49,7 @@ export default function AboutSection() {
   return (
     <section className="bg-black text-white">
 
-      <div className="bg-lime-400 text-black py-6 overflow-hidden">
+      <div className="bg-lime-400 mt-16 text-black py-6 overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap">
           {[...services, ...services].map((service, index) => (
             <React.Fragment key={index}>
