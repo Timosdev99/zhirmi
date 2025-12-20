@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
 import ContactSidebar from './contactSidebar';
 import { Menu, X, Facebook, Instagram, Twitter, Phone, Mail, MapPin } from 'lucide-react';
@@ -8,6 +8,21 @@ import { Menu, X, Facebook, Instagram, Twitter, Phone, Mail, MapPin } from 'luci
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false)
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      const isScrolledUp = prevScrollPos > currentScrollPos;
+
+      setVisible(isScrolledUp || currentScrollPos < 10);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollPos]);
 
   const contentVariants: Variants = {
     open: {
@@ -40,7 +55,7 @@ export default function Header() {
   return (
     <motion.nav
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      animate={{ y: visible ? 0 : -100 }}
       transition={{ duration: 0.5 }}
       className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,7 +67,7 @@ export default function Header() {
             <div className="w-12 h-12 bg-lime-400 rounded-lg flex items-center justify-center transform -rotate-12">
               <div className="w-8 h-8 border-4 border-black rounded"></div>
             </div>
-            <span className="text-2xl font-bold text-white">artistic.</span>
+            <span className="text-2xl font-bold text-white">Zhirmitech.</span>
           </motion.div>
 
           {/* Desktop Navigation */}

@@ -113,20 +113,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="fixed top-1/2 right-8 -translate-y-1/2 space-y-4 z-50">
-        <motion.button
-          whileHover={{ scale: 1.1, backgroundColor: '#a3e635' }}
-          className="w-14 h-14 bg-white text-black rounded-lg flex items-center justify-center shadow-lg"
-        >
-          <FileText className="w-6 h-6" />
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.1, backgroundColor: '#a3e635' }}
-          className="w-14 h-14 bg-white text-black rounded-lg flex items-center justify-center shadow-lg"
-        >
-          <ShoppingCart className="w-6 h-6" />
-        </motion.button>
-      </div>
+
 
       <style jsx>{`
         @keyframes spin-slow {
