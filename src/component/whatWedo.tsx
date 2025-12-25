@@ -122,7 +122,7 @@ export default function WhatWeDoSection() {
 
           <motion.div variants={item} whileHover={{ y: -10 }} className="md:col-span-2 rounded-3xl overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=400&fit=crop"
+              src="https://res.cloudinary.com/dmgf16qzz/image/upload/v1766623092/WhatsApp_Image_2025-12-20_at_11.03.31_PM_1_skckvn.jpg"
               alt="Team working together"
               className="w-full h-full object-cover"
             />

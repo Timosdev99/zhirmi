@@ -30,10 +30,10 @@ export default function ContactSidebar() {
             </div>
             <h3 className="text-white text-xl font-semibold mb-2">Phone</h3>
             <a
-              href="tel:+123456789"
+              href="tel:+2347043635009"
               className="text-gray-400 hover:text-lime-400 transition-colors duration-200"
             >
-              +123 456 789
+              +234 704 363 5009
             </a>
           </div>
 
@@ -43,10 +43,10 @@ export default function ContactSidebar() {
             </div>
             <h3 className="text-white text-xl font-semibold mb-2">Email</h3>
             <a
-              href="mailto:info@domainname.com"
+              href="mailto:zhirmitech@gmail.com"
               className="text-gray-400 hover:text-lime-400 transition-colors duration-200"
             >
-              info@domainname.com
+              zhirmitech@gmail.com
             </a>
           </div>
 
@@ -56,8 +56,8 @@ export default function ContactSidebar() {
             </div>
             <h3 className="text-white text-xl font-semibold mb-2">Address</h3>
             <p className="text-gray-400 leading-relaxed">
-              123 Creative Lane London, SW1A 1AA<br />
-              United Kingdom
+              Lagos<br />
+              Nigeria
             </p>
           </div>
         </div>

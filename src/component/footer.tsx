@@ -53,7 +53,7 @@ export default function Footer() {
                 <div className="w-10 h-10 bg-lime-400 rounded-lg flex items-center justify-center transform -rotate-12">
                   <div className="w-6 h-6 border-3 border-black rounded"></div>
                 </div>
-                <span className="text-2xl font-bold">artistic.</span>
+                <span className="text-2xl font-bold">zhirmitech.</span>
               </div>
               <p className="text-gray-400 text-sm mb-6 leading-relaxed">
                 Quality Work with No Limits. Freelancing Made Simple and Successful.
@@ -70,23 +70,18 @@ export default function Footer() {
               <h3 className="text-lg font-semibold mb-6">Quick Link</h3>
               <ul className="space-y-3">
                 <li>
-                  <a href="#" className="text-gray-400 hover:text-lime-400 transition text-sm">
+                  <a href="/" className="text-gray-400 hover:text-lime-400 transition text-sm">
                     Home
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-400 hover:text-lime-400 transition text-sm">
+                  <a href="/about" className="text-gray-400 hover:text-lime-400 transition text-sm">
                     About Us
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-400 hover:text-lime-400 transition text-sm">
+                  <a href="service" className="text-gray-400 hover:text-lime-400 transition text-sm">
                     Services
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-400 hover:text-lime-400 transition text-sm">
-                    Blog
                   </a>
                 </li>
               </ul>
@@ -126,8 +121,8 @@ export default function Footer() {
                     <Phone className="w-5 h-5 text-lime-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-white font-medium">+23 456 789</p>
-                    <p className="text-sm text-gray-400">domain@gmail.com</p>
+                    <p className="text-sm text-white font-medium">+234 704 363 5009</p>
+                    <p className="text-sm text-gray-400">zhirmitech@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -136,7 +131,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400">
-                      123 Creative Lane London,<br />SW1A 1AA UK
+                      Lagos<br />NIGERIA
                     </p>
                   </div>
                 </div>

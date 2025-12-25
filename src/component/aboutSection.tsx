@@ -66,17 +66,8 @@ export default function AboutSection() {
           <div className="relative">
             <motion.div style={{ y: y1 }} whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="relative rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop"
+                src="https://res.cloudinary.com/dmgf16qzz/image/upload/v1766623072/WhatsApp_Image_2025-12-20_at_11.04.53_PM_gac2wf.jpg"
                 alt="Team collaboration"
-                className="w-full h-auto"
-              />
-            </motion.div>
-
-            {/* Bottom Image */}
-            <motion.div style={{ y: y2 }} whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="mt-6 rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop"
-                alt="Team working"
                 className="w-full h-auto"
               />
             </motion.div>
@@ -194,8 +185,8 @@ export default function AboutSection() {
                 </div>
                 <div>
                   <p className="text-xs text-gray-400">Need Help!</p>
-                  <a href="tel:+123456789" className="text-lg font-semibold hover:text-lime-400 transition">
-                    +123 456 789
+                  <a href="tel:+2347043635009" className="text-lg font-semibold hover:text-lime-400 transition">
+                    +234 704 363 5009
                   </a>
                 </div>
               </div>

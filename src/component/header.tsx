@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, Variants } from 'framer-motion';
 import ContactSidebar from './contactSidebar';
 import { Menu, X, Facebook, Instagram, Twitter, Phone, Mail, MapPin } from 'lucide-react';
@@ -11,6 +12,7 @@ export default function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,6 +55,7 @@ export default function Header() {
     }
   };
 
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -76,14 +79,14 @@ export default function Header() {
             <motion.a
               href="/"
               whileHover={{ scale: 1.1, color: '#a3e635' }}
-              className="text-lime-400 hover:text-lime-300 transition-colors duration-200"
+              className={`${pathname === '/' ? 'text-lime-400' : 'text-white'} hover:text-lime-300 transition-colors duration-200`}
             >
               Home
             </motion.a>
             <motion.a
               href="/about"
               whileHover={{ scale: 1.1, color: '#a3e635' }}
-              className="text-white hover:text-lime-400 transition-colors duration-200"
+              className={`${pathname === '/about' ? 'text-lime-400' : 'text-white'} hover:text-lime-400 transition-colors duration-200`}
             >
               About Us
 
@@ -91,7 +94,7 @@ export default function Header() {
             <motion.a
               href="/service"
               whileHover={{ scale: 1.1, color: '#a3e635' }}
-              className="text-white hover:text-lime-400 transition-colors duration-200"
+              className={`${pathname === '/service' ? 'text-lime-400' : 'text-white'} hover:text-lime-400 transition-colors duration-200`}
             >
               Services
             </motion.a>
@@ -103,9 +106,9 @@ export default function Header() {
               Pages
             </motion.a>
             <motion.a
-              href="#"
+              href="/contact"
               whileHover={{ scale: 1.1, color: '#a3e635' }}
-              className="text-white hover:text-lime-400 transition-colors duration-200"
+              className={`${pathname === '/contact' ? 'text-lime-400' : 'text-white'} hover:text-lime-400 transition-colors duration-200`}
             >
               Contact Us
             </motion.a>
@@ -176,10 +179,10 @@ export default function Header() {
                   </div>
                   <h3 className="text-white text-xl font-semibold mb-2">Phone</h3>
                   <a
-                    href="tel:+123456789"
+                    href="tel:+2347043635009"
                     className="text-gray-400 hover:text-lime-400 transition-colors duration-200"
                   >
-                    +123 456 789
+                    +234 704 363 5009
                   </a>
                 </motion.div>
 
@@ -190,10 +193,10 @@ export default function Header() {
                   </div>
                   <h3 className="text-white text-xl font-semibold mb-2">Email</h3>
                   <a
-                    href="mailto:info@domainname.com"
+                    href="mailto:zhirmitech@gmail.com"
                     className="text-gray-400 hover:text-lime-400 transition-colors duration-200"
                   >
-                    info@domainname.com
+                    zhirmitech@gmail.com
                   </a>
                 </motion.div>
 
@@ -204,8 +207,8 @@ export default function Header() {
                   </div>
                   <h3 className="text-white text-xl font-semibold mb-2">Address</h3>
                   <p className="text-gray-400 leading-relaxed">
-                    123 Creative Lane London, SW1A 1AA<br />
-                    United Kingdom
+                    Lagos<br />
+                    Nigeria
                   </p>
                 </motion.div>
               </motion.div>
@@ -233,20 +236,20 @@ export default function Header() {
         className="md:hidden bg-gray-500 border-t border-gray-800">
         <div className="px-4 py-4 space-y-4">
           <a
-            href="#"
-            className="block text-lime-400 hover:text-lime-300 transition-colors duration-200"
+            href="/"
+            className={`${pathname === '/' ? 'text-lime-400' : 'text-white'} block hover:text-lime-300 transition-colors duration-200`}
           >
             Home
           </a>
           <a
-            href="#"
-            className="block text-white hover:text-lime-400 transition-colors duration-200"
+            href="/about"
+            className={`${pathname === '/about' ? 'text-lime-400' : 'text-white'} block hover:text-lime-400 transition-colors duration-200`}
           >
             About Us
           </a>
           <a
-            href="#"
-            className="block text-white hover:text-lime-400 transition-colors duration-200"
+            href="/service"
+            className={`${pathname === '/service' ? 'text-lime-400' : 'text-white'} block hover:text-lime-400 transition-colors duration-200`}
           >
             Services
           </a>
@@ -257,8 +260,8 @@ export default function Header() {
             Pages
           </a>
           <a
-            href="#"
-            className="block text-white hover:text-lime-400 transition-colors duration-200"
+            href="/contact"
+            className={`${pathname === '/contact' ? 'text-lime-400' : 'text-white'} block hover:text-lime-400 transition-colors duration-200`}
           >
             Contact Us
           </a>

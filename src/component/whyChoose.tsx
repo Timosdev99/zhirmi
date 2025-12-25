@@ -1,5 +1,6 @@
 'use client'
 import React from 'react';
+import Link from 'next/link';
 import { ArrowUpRight, Monitor, Users, Headphones, CheckCircle } from 'lucide-react';
 
 export default function WhyChooseUsSection() {
@@ -17,7 +18,7 @@ export default function WhyChooseUsSection() {
           <div className="relative">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=700&fit=crop"
+                src="https://res.cloudinary.com/dmgf16qzz/image/upload/v1766623091/WhatsApp_Image_2025-12-09_at_10.07.47_AM_jf8dbe.jpg"
                 alt="Professional woman with laptop"
                 className="w-full h-auto rounded-3xl"
               />
@@ -122,13 +123,14 @@ export default function WhyChooseUsSection() {
                 Our powerful <span className="text-lime-400">feature</span>
               </h2>
             </div>
-
-            <button className="hidden md:flex bg-gray-800 text-white px-6 py-3 rounded-full font-medium hover:bg-gray-700 transition items-center space-x-3 group">
-              <span>Contact Us</span>
-              <div className="w-10 h-10 bg-lime-400 rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform">
-                <ArrowUpRight className="w-5 h-5 text-black" />
-              </div>
-            </button>
+            <Link href="/contact">
+              <button className="hidden md:flex bg-gray-800 text-white px-6 py-3 rounded-full font-medium hover:bg-gray-700 transition items-center space-x-3 group">
+                <span>Contact Us</span>
+                <div className="w-10 h-10 bg-lime-400 rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform">
+                  <ArrowUpRight className="w-5 h-5 text-black" />
+                </div>
+              </button>
+            </Link>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
