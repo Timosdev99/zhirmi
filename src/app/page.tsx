@@ -6,6 +6,7 @@ import HomePrinciples from "@/component/home/principles";
 import HomeStart from "@/component/home/start";
 import HomeStudio from "@/component/home/studio";
 import HomeWork from "@/component/home/work";
+import TestimonialsSection from "@/component/testimonies";
 import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata({
@@ -22,6 +23,7 @@ export default function Home() {
       <HomeCapabilities />
       <HomeWork />
       <HomePrinciples />
+      <TestimonialsSection />
       <HomeStart />
       <HomeStudio />
       <HomePricing />

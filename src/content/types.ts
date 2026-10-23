@@ -115,6 +115,9 @@ export type CaseStudy = {
 export type Testimonial = {
   quote: string;
   name: string;
-  company: string;
+  company?: string;
   role?: string;
+  imageUrl?: string;
+  country?: string;
+  rating?: number;
 };
