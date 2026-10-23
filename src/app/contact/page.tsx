@@ -1,125 +1,117 @@
+import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import ContactForm from "@/component/forms/ContactForm";
+import { site } from "@/content/site";
+import { createMetadata } from "@/lib/metadata";
 
-import { Mail, Phone, MapPin } from 'lucide-react';
+export const metadata = createMetadata({
+  title: "Contact — Book a Free Call",
+  description:
+    "Tell us about your business. We reply within one working day and start with a free 20-minute call.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
-    <div className="bg-black text-white min-h-screen">
-      <div
-        className="absolute top-0 -left-20 w-96 h-96 bg-lime-900 rounded-full blur-3xl"
-      ></div>
-
-      <div
-        className="absolute bottom-0 right-20 w-96 h-96 bg-lime-900 rounded-full blur-3xl"
-      ></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-extrabold sm:text-5xl md:text-6xl text-lime-400">
-            Contact Us
+    <div className="bg-background">
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-wider text-accent-ink">
+            Contact
+          </p>
+          <h1 className="mt-3 font-display text-4xl font-bold leading-tight text-brand sm:text-5xl">
+            Tell us what is slowing your business down.
           </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-400">
-            We&apos;re here to help. Reach out to us for any inquiries or support.
+          <p className="mt-5 text-lg text-muted">
+            Book a free 20-minute call. We will tell you the three things we
+            would fix first, whether you work with us or not.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        <div className="mt-14 grid gap-12 lg:grid-cols-5">
+          <div className="lg:col-span-2">
+            <div className="rounded-2xl border border-border bg-surface p-6">
+              <h2 className="font-display text-xl font-semibold text-brand">
+                Get in touch
+              </h2>
+              <ul className="mt-6 space-y-5 text-sm">
+                <li>
+                  <a
+                    href={`mailto:${site.email}`}
+                    className="flex items-start gap-3 text-foreground hover:text-accent-ink"
+                  >
+                    <Mail className="mt-0.5 h-5 w-5 shrink-0 text-accent-ink" />
+                    <span>
+                      <span className="block font-medium">Email</span>
+                      <span className="text-muted">{site.email}</span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={site.phoneHref}
+                    className="flex items-start gap-3 text-foreground hover:text-accent-ink"
+                  >
+                    <Phone className="mt-0.5 h-5 w-5 shrink-0 text-accent-ink" />
+                    <span>
+                      <span className="block font-medium">Phone</span>
+                      <span className="text-muted">{site.phone}</span>
+                    </span>
+                  </a>
+                </li>
+                <li className="flex items-start gap-3">
+                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent-ink" />
+                  <span>
+                    <span className="block font-medium">Based in</span>
+                    <span className="text-muted">{site.location}</span>
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Clock className="mt-0.5 h-5 w-5 shrink-0 text-accent-ink" />
+                  <span>
+                    <span className="block font-medium">Response time</span>
+                    <span className="text-muted">Within one working day</span>
+                  </span>
+                </li>
+              </ul>
 
-          <div className="space-y-8">
-            <div>
-              <h2 className="text-2xl font-bold text-lime-400 mb-4">Get in Touch</h2>
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0">
-                  <Mail className="h-6 w-6 text-lime-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold">Email</h3>
-                  <p className="text-gray-400">zhirmitech@gmail.com</p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0">
-                  <Phone className="h-6 w-6 text-lime-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold">Phone</h3>
-                  <p className="text-gray-400">+234 704 363 5009</p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0">
-                  <MapPin className="h-6 w-6 text-lime-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold">Address</h3>
-                  <p className="text-gray-400">Lagos, Nigeria</p>
-                </div>
+              <div className="mt-8 border-t border-border pt-6">
+                <p className="text-sm text-muted">
+                  Prefer to talk it through? Use the form and we will send a
+                  calendar invite for a free 20-minute call.
+                </p>
+                {site.whatsappUrl && (
+                  <a
+                    href={site.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-brand transition-colors hover:bg-accent-dark"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    Message us on WhatsApp
+                  </a>
+                )}
               </div>
             </div>
           </div>
 
-
-          <div className="bg-transparent backdrop-blur-2xl p-8 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold text-lime-400 mb-6">Send a Message</h2>
-            <form action="#" method="POST" className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300">
-                  Full Name
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    autoComplete="name"
-                    className="flex-1 bg-transparent border border-gray-700 rounded-full px-6 py-3 text-sm focus:outline-none focus:border-lime-400 transition"
-                  />
-                </div>
+          <div className="lg:col-span-3">
+            <div
+              id="contact-form"
+              className="scroll-mt-24 rounded-2xl border border-border bg-surface p-6 sm:p-8"
+            >
+              <h2 className="font-display text-xl font-semibold text-brand">
+                Send a message
+              </h2>
+              <p className="mt-1 text-sm text-muted">
+                A few details help us come prepared.
+              </p>
+              <div className="mt-6">
+                <ContactForm />
               </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300">
-                  Email Address
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-
-                    className="flex-1  bg-transparent border border-gray-700 rounded-full px-6 py-3 text-sm focus:outline-none focus:border-lime-400 transition"
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300">
-                  Message
-                </label>
-                <div className="mt-1">
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    className="block w-full px-4 py-3 rounded-md bg-transparent border border-gray-700 text-white focus:outline-none focus:border-lime-400 transition "
-                    defaultValue={''}
-                  />
-                </div>
-              </div>
-              <div>
-                <button
-                  type="submit"
-                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-lime-400 hover:bg-lime-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-400"
-                >
-                  Send Message
-                </button>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

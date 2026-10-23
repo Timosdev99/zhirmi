@@ -1,133 +1,125 @@
+import Link from "next/link";
+import { ArrowRight, Check } from "lucide-react";
+import { site } from "@/content/site";
 
-'use client'
-import React from 'react';
-import { motion, Variants } from 'framer-motion';
-import { FileText, ShoppingCart } from 'lucide-react';
-import RatingCounter from './RatingCounter';
+const platforms = [
+  "Wix Studio",
+  "WordPress",
+  "Webflow",
+  "Shopify",
+  "Google Ads",
+  "Mailchimp",
+  "Brevo",
+  "GoHighLevel",
+];
+
+const handles = [
+  "Websites",
+  "SEO & ads",
+  "Email",
+  "AI agents",
+  "Automation",
+  "Operations",
+  "Content",
+];
 
 export default function Hero() {
-
-  const textVariant: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
-  };
-
-  const delayedVariant: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.3 } }
-  };
-
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
-
-
-      <div className="relative min-h-screen flex items-center">
-
-        <motion.div
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: 'easeOut' }}
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&h=900&fit=crop)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50"></div>
-        </motion.div>
-
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ staggerChildren: 0.2 }}
-            className="max-w-4xl"
-          >
-            <motion.div variants={textVariant} className="flex items-center space-x-2 mb-6">
-              <div className="w-8 h-8 bg-lime-400 rounded-full flex items-center justify-center">
-                <div className="w-4 h-4 border-2 border-black rounded"></div>
-              </div>
-              <span className="text-sm uppercase tracking-wider">Welcome to Zhirmitech Web Agency</span>
-            </motion.div>
-
-            <motion.h1 variants={textVariant} className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-              YOUR VISION, OUR
-              <br />
-              <span className="text-lime-400">CREATIVE EXPERTISE</span>
-            </motion.h1>
-
-            <motion.div variants={delayedVariant} className="flex flex-wrap items-start gap-12">
-              {/* Rating */}
-              <div>
-                <div className="flex items-baseline space-x-2 mb-2">
-                  <RatingCounter />
-                  <span className="text-gray-400">(5k+reviews)</span>
-                </div>
-                <div className="flex space-x-1 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-6 h-6 fill-lime-400" viewBox="0 0 24 24">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-sm text-gray-400">
-                  Average rating based<br />on client feedback
-                </p>
-              </div>
-
-              {/* Description and CTA */}
-              <div>
-                <p className="text-xl mb-8 text-gray-300">
-                  We craft innovative websites<br />and digital solutions.
-                </p>
-
-                {/* rotate */}
-                <div className="relative w-40 h-40">
-                  <svg className="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 200 200">
-                    <defs>
-                      <path
-                        id="circlePath"
-                        d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"
-                      />
-                    </defs>
-                    <text className="text-[11px] fill-lime-400 uppercase tracking-widest font-medium">
-                      <textPath href="#circlePath" startOffset="0%">
-                        Get Started • Get Started • Get Started •
-                      </textPath>
-                    </text>
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <button className="w-20 h-20 bg-lime-400 rounded-full flex items-center justify-center hover:bg-lime-300 transition transform hover:scale-110 shadow-xl">
-                      <svg className="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
+    <section className="relative overflow-hidden bg-background">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-32 right-0 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 h-72 w-72 rounded-full bg-brand/5 blur-3xl" />
       </div>
 
+      <div className="relative mx-auto grid max-w-7xl gap-14 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8 lg:py-28">
+        <div>
+          <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-accent-ink">
+            <span aria-hidden>✱</span>
+            Zhirmitech
+          </p>
 
+          <h1 className="mt-5 font-display text-4xl font-bold leading-[1.1] text-brand sm:text-5xl lg:text-6xl">
+            Your business&apos;s tech and growth team —{" "}
+            <span className="text-accent-ink">without hiring one.</span>
+          </h1>
 
-      <style jsx>{`
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-      `}</style>
-    </div>
+          <p className="mt-6 max-w-xl text-lg text-muted">
+            Websites, marketing, AI agents and automation for growing businesses
+            in the UK, US and beyond. One point of contact, a team of specialists
+            behind it.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href={site.bookingUrl}
+              className="group inline-flex items-center gap-2 rounded-sm  bg-brand px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+            >
+              Book a free call
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              href="/pricing"
+              className="inline-flex items-center gap-2 rounded-sm border-b-4 border-2 border-brand-700 bg-surface px-6 py-3 text-sm font-semibold text-brand transition-colors hover:border-accent-ink hover:text-accent-ink"
+            >
+              See pricing
+            </Link>
+          </div>
+
+          <p className="mt-4 text-sm text-muted">
+            Based in Lagos · Working with clients in the UK, US, Australia &amp;
+            Nigeria
+          </p>
+
+          <div className="mt-10 border-t border-border pt-6">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted">
+              Platforms we build on
+            </p>
+            <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-foreground/80">
+              {platforms.map((platform) => (
+                <li key={platform}>{platform}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="relative">
+          <div className="rounded-3xl border border-border bg-surface p-6 shadow-sm sm:p-8">
+            <div className="flex items-center justify-between gap-4">
+              <p className="font-display text-lg font-bold text-brand">
+                One point of contact
+              </p>
+              <span className="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent-ink">
+                You + Samuel
+              </span>
+            </div>
+            <p className="mt-2 text-sm text-muted">
+              No chasing five freelancers. Samuel manages your project end to end
+              and brings in vetted specialists when needed.
+            </p>
+
+            <ul className="mt-6 grid gap-3">
+              {handles.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-center justify-between rounded-xl border border-border bg-background px-4 py-3 text-sm"
+                >
+                  <span className="font-medium text-foreground">{item}</span>
+                  <Check className="h-4 w-4 text-accent-ink" />
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-6 rounded-xl bg-brand p-4 text-white">
+              <p className="text-sm text-white/70">
+                Clear plan. Fixed quote. Monthly report.
+              </p>
+              <p className="mt-1 font-display text-lg font-semibold">
+                No hidden fees.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

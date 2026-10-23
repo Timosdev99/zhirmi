@@ -1,23 +1,31 @@
-import Image from "next/image";
-import Hero from "@/component/Hero";
-import ServicesSection from "@/component/Service";
-import WhatWeDoSection from "@/component/whatWedo";
-import WhyChooseUsSection from "@/component/whyChoose";
-import PortfolioSection from "@/component/projects";
-import CTAFactsSection from "@/component/start";
-import PricingSection from "@/component/pricing";
-import TestimonialsSection from "@/component/testimonies";
+import CTASection from "@/component/cta";
+import HomeCapabilities from "@/component/home/capabilities";
+import HomeHero from "@/component/home/hero";
+import HomePricing from "@/component/home/pricing";
+import HomePrinciples from "@/component/home/principles";
+import HomeStart from "@/component/home/start";
+import HomeStudio from "@/component/home/studio";
+import HomeWork from "@/component/home/work";
+import { createMetadata } from "@/lib/metadata";
+
+export const metadata = createMetadata({
+  title: "Zhirmitech — Websites, Marketing, AI & Operations",
+  description:
+    "Websites, SEO, content, AI agents, automation and operations for growing businesses. One team for the build, the growth and the systems behind it.",
+  path: "/",
+});
+
 export default function Home() {
   return (
-    <div >
-      <Hero />
-      <ServicesSection />
-      <WhatWeDoSection />
-      <WhyChooseUsSection />
-      <PortfolioSection />
-      <CTAFactsSection />
-      <PricingSection />
-      <TestimonialsSection />
+    <div>
+      <HomeHero />
+      <HomeCapabilities />
+      <HomeWork />
+      <HomePrinciples />
+      <HomeStart />
+      <HomeStudio />
+      <HomePricing />
+      <CTASection />
     </div>
   );
 }

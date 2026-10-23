@@ -1,196 +1,88 @@
-'use client'
-import React from 'react';
-import Link from 'next/link';
-import { ArrowUpRight, Monitor, Users, Headphones, CheckCircle } from 'lucide-react';
+import Link from "next/link";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { site } from "@/content/site";
+
+const reasons = [
+  {
+    title: "One point of contact",
+    description:
+      "No chasing five freelancers. Samuel manages your project end to end.",
+  },
+  {
+    title: "The right platform, not our favourite one",
+    description:
+      "We recommend what fits your budget and goals, whether that is Wix Studio, WordPress, Webflow, Shopify or custom code.",
+  },
+  {
+    title: "We build and run it",
+    description:
+      "Most agencies hand over and disappear. We maintain, market and improve what we build.",
+  },
+  {
+    title: "Honest reporting",
+    description:
+      "Plain-English reports with real numbers: what we found, what we changed and what happened.",
+  },
+  {
+    title: "Fixed-price packages",
+    description:
+      "Clear scope and no lock-in on care plans. Cancel with 30 days' notice.",
+  },
+];
 
 export default function WhyChooseUsSection() {
   return (
-    <section className="relative bg-black text-white py-20 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-lime-400/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-green-500/8 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-
-          <div className="relative">
-            <div className="relative">
-              <img
-                src="https://res.cloudinary.com/dmgf16qzz/image/upload/v1766623091/WhatsApp_Image_2025-12-09_at_10.07.47_AM_jf8dbe.jpg"
-                alt="Professional woman with laptop"
-                className="w-full h-auto rounded-3xl"
-              />
-              <div className="absolute inset-0 bg-black/40 rounded-3xl"></div>
-              <div className="absolute top-8 right-8">
-                <div className="relative w-24 h-24">
-                  <svg className="w-full h-full animate-spin-slow" viewBox="0 0 100 100">
-                    <defs>
-                      <path
-                        id="badgeCircle"
-                        d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
-                      />
-                    </defs>
-                    <text className="text-[6px] fill-black uppercase tracking-wider font-semibold">
-                      <textPath href="#badgeCircle">
-                        • We Explore • We Explore • We Explore
-                      </textPath>
-                    </text>
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-lime-400 rounded-full flex items-center justify-center">
-                      <div className="w-8 h-8 border-4 border-black rounded-full"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* 3D Geometric Shape */}
-            <div className="absolute -right-20 bottom-0 w-64 h-64 opacity-20">
-              <div className="relative w-full h-full">
-                <svg viewBox="0 0 200 200" className="w-full h-full text-gray-600">
-                  <polygon points="100,20 180,60 180,140 100,180 20,140 20,60" fill="none" stroke="currentColor" strokeWidth="2" />
-                  <polygon points="100,20 180,60 100,100" fill="none" stroke="currentColor" strokeWidth="2" />
-                  <polygon points="100,20 20,60 100,100" fill="none" stroke="currentColor" strokeWidth="2" />
-                  <polygon points="100,180 180,140 100,100" fill="none" stroke="currentColor" strokeWidth="2" />
-                  <polygon points="100,180 20,140 100,100" fill="none" stroke="currentColor" strokeWidth="2" />
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <span className="text-lime-400 text-xl">✱</span>
-              <span className="text-sm uppercase tracking-wider text-white">Why Choose Us</span>
-            </div>
-
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              Your trusted partner for<br />
-              <span className="text-lime-400">digital success</span>
+    <section className="border-t border-border bg-surface py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-accent-ink">
+              <span aria-hidden>✱</span>
+              Why Zhirmitech
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-bold leading-tight text-brand sm:text-4xl lg:text-5xl">
+              A partner, not another supplier.
             </h2>
-
-            <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-              We are dedicated to helping your business succeed in digital world by providing innovative solutions, personalized strategies.
+            <p className="mt-5 text-muted">
+              One accountable project lead, backed by a network of vetted
+              specialists for websites, marketing, AI and operations.
             </p>
 
-
-            <div className="grid grid-cols-2 gap-6 mb-8">
-              <div>
-                <div className="flex items-center space-x-2 mb-2">
-                  <span className="text-lime-400">✱</span>
-                  <h3 className="font-semibold text-lg">Proven Track Record</h3>
-                </div>
-                <p className="text-gray-400 text-sm">
-                  Demonstrated success with clients across various industries.
-                </p>
-              </div>
-
-              <div>
-                <div className="flex items-center space-x-2 mb-2">
-                  <span className="text-lime-400">✱</span>
-                  <h3 className="font-semibold text-lg">Tailored Solutions</h3>
-                </div>
-                <p className="text-gray-400 text-sm">
-                  Demonstrated success with clients across various industries.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-8">
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="w-5 h-5 text-lime-400" />
-                <span className="text-sm">Results-driven approach</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="w-5 h-5 text-lime-400" />
-                <span className="text-sm">Transparent communication</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative rounded-3xl border-10 border-b-0 border-lime-400 bg-black p-12">
-          <div className="flex items-center justify-between mb-12">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <span className="text-lime-400 text-xl">✱</span>
-                <span className="text-sm uppercase tracking-wider text-white">Our Feature</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold">
-                Our powerful <span className="text-lime-400">feature</span>
-              </h2>
-            </div>
-            <Link href="/contact">
-              <button className="hidden md:flex bg-gray-800 text-white px-6 py-3 rounded-full font-medium hover:bg-gray-700 transition items-center space-x-3 group">
-                <span>Contact Us</span>
-                <div className="w-10 h-10 bg-lime-400 rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform">
-                  <ArrowUpRight className="w-5 h-5 text-black" />
-                </div>
-              </button>
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <div className="w-14 h-14 border-2 border-lime-400 rounded-xl flex items-center justify-center mb-4">
-                <Monitor className="w-7 h-7 text-lime-400" strokeWidth={1.5} />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Responsive Web Design</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Robust security measures to protect data and privacy
+            <div className="mt-8 rounded-2xl bg-brand p-6 text-white">
+              <p className="text-sm text-white/70">Not sure where to start?</p>
+              <p className="mt-1 font-display text-xl font-semibold">
+                Book a free 20-minute call.
               </p>
-            </div>
-
-            <div>
-              <div className="w-14 h-14 border-2 border-lime-400 rounded-xl flex items-center justify-center mb-4">
-                <Users className="w-7 h-7 text-lime-400" strokeWidth={1.5} />
-              </div>
-              <h3 className="text-xl font-bold mb-3">User-Centric Interfaces</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Robust security measures to protect data and privacy
-              </p>
-            </div>
-
-            <div>
-              <div className="w-14 h-14 border-2 border-lime-400 rounded-xl flex items-center justify-center mb-4">
-                <Headphones className="w-7 h-7 text-lime-400" strokeWidth={1.5} />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Ongoing Supports</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Robust security measures to protect data and privacy
-              </p>
+              <Link
+                href={site.bookingUrl}
+                className="mt-4 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-brand transition-colors hover:bg-accent-dark"
+              >
+                Book a free call
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </div>
 
-          {/*  CTA */}
-          <div className="mt-12 flex items-center justify-center">
-            <div className="flex items-center space-x-3 bg-lime-400 text-black px-6 py-3 rounded-full">
-              <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-lime-400 text-xs font-bold">
-                💬
-              </div>
-              <span className="font-medium">Let's make something great work together.</span>
-              <a href="#" className="font-bold underline">Get Free Quote</a>
-            </div>
-          </div>
+          <ul className="grid gap-4 sm:grid-cols-2 lg:col-span-7">
+            {reasons.map((reason) => (
+              <li
+                key={reason.title}
+                className="rounded-2xl border border-border bg-background p-5"
+              >
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent-ink" />
+                  <div>
+                    <h3 className="font-semibold text-brand">{reason.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">
+                      {reason.description}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }

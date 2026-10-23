@@ -1,296 +1,111 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import { motion, Variants } from 'framer-motion';
-import ContactSidebar from './contactSidebar';
-import { Menu, X, Facebook, Instagram, Twitter, Phone, Mail, MapPin } from 'lucide-react';
-
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ArrowRight, Mail, Menu, Phone, X } from "lucide-react";
+import { site } from "@/content/site";
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isMenuOpen, setMenuOpen] = useState(false)
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset;
-      const isScrolledUp = prevScrollPos > currentScrollPos;
-
-      setVisible(isScrolledUp || currentScrollPos < 10);
-      setPrevScrollPos(currentScrollPos);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [prevScrollPos]);
-
-  const contentVariants: Variants = {
-    open: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    },
-    closed: {
-      y: 50,
-      opacity: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeIn"
-      }
-    }
-  };
-
-  const containerVariants: Variants = {
-    open: {
-      transition: { staggerChildren: 0.2, delayChildren: 0.5 }
-    },
-    closed: {
-      transition: { staggerChildren: 0.05, staggerDirection: -1 }
-    }
-  };
-
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: visible ? 0 : -100 }}
-      transition={{ duration: 0.5 }}
-      className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.1, rotate: -15 }}
-            className="flex items-center space-x-2">
-            <div className="w-12 h-12 bg-lime-400 rounded-lg flex items-center justify-center transform -rotate-12">
-              <div className="w-8 h-8 border-4 border-black rounded"></div>
-            </div>
-            <span className="text-2xl font-bold text-white">Zhirmitech.</span>
-          </motion.div>
+    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link
+          href="/"
+          className="flex items-center gap-2"
+          aria-label={`${site.name} home`}
+          onClick={() => setOpen(false)}
+        >
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand">
+            <span className="h-5 w-5 rounded border-2 border-accent" />
+          </span>
+          <span className="font-display text-xl font-bold tracking-tight text-brand">
+            {site.name}
+          </span>
+        </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden text-xl md:flex items-center space-x-8">
-            <motion.a
-              href="/"
-              whileHover={{ scale: 1.1, color: '#a3e635' }}
-              className={`${pathname === '/' ? 'text-lime-400' : 'text-white'} hover:text-lime-300 transition-colors duration-200`}
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
+          {site.nav.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`nav-link inline-flex items-center pb-1 text-sm font-medium transition-colors hover:text-accent-ink ${isActive(link.href) ? "text-accent-ink" : "text-foreground"
+                }`}
+              aria-current={isActive(link.href) ? "page" : undefined}
             >
-              Home
-            </motion.a>
-            <motion.a
-              href="/about"
-              whileHover={{ scale: 1.1, color: '#a3e635' }}
-              className={`${pathname === '/about' ? 'text-lime-400' : 'text-white'} hover:text-lime-400 transition-colors duration-200`}
-            >
-              About Us
-
-            </motion.a>
-            <motion.a
-              href="/service"
-              whileHover={{ scale: 1.1, color: '#a3e635' }}
-              className={`${pathname === '/service' ? 'text-lime-400' : 'text-white'} hover:text-lime-400 transition-colors duration-200`}
-            >
-              Services
-            </motion.a>
-            <motion.a
-              href="#"
-              whileHover={{ scale: 1.1, color: '#a3e635' }}
-              className="text-white hover:text-lime-400 transition-colors duration-200"
-            >
-              Pages
-            </motion.a>
-            <motion.a
-              href="/contact"
-              whileHover={{ scale: 1.1, color: '#a3e635' }}
-              className={`${pathname === '/contact' ? 'text-lime-400' : 'text-white'} hover:text-lime-400 transition-colors duration-200`}
-            >
-              Contact Us
-            </motion.a>
-          </div>
-
-          {/* Social Icons & Menu Grid */}
-          <div className="hidden md:flex items-center space-x-4">
-            <motion.a
-              href="#"
-              whileHover={{ scale: 1.2 }}
-              aria-label="Twitter"
-            >
-              <Twitter size={30} className='text-lime-400 hover:text-white transition duration-500 ease-in-out' />
-            </motion.a>
-            <motion.a
-              href="#"
-              whileHover={{ scale: 1.2 }}
-              aria-label="Facebook"
-            >
-              <Facebook size={30} className='text-lime-400 hover:text-white transition duration-500 ease-in-out' />
-            </motion.a>
-            <motion.a
-              href="#"
-              whileHover={{ scale: 1.2 }}
-              className="text-white hover:text-lime-400 transition-colors duration-200"
-              aria-label="Instagram"
-            >
-              <Instagram size={30} className='text-lime-400 hover:text-white transition duration-500 ease-in-out' />
-            </motion.a>
-            <button
-              className="p-2 bg-gray-500 rounded-full text-white hover:bg-lime-400 transition duration-500 ease-in-out"
-              aria-label="Menu"
-              onClick={() => setMenuOpen(!isMenuOpen)}
-            >
-              <div className="grid grid-cols-3 gap-1">
-                {[...Array(9)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="w-1 h-1 bg-current rounded-full"
-                  />
-                ))}
-              </div>
-            </button>
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: isMenuOpen ? 0 : "100%" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className={`fixed top-0 right-0 h-full w-96 bg-gray-700 border-l border-gray-800 z-50`}
-            >
-              <button
-                onClick={() => setMenuOpen(false)}
-                className="absolute top-6 right-6 w-12 h-12 rounded-full border border-gray-700 flex items-center justify-center text-white hover:bg-lime-400 hover:text-black hover:border-lime-400 transition-all duration-300"
-                aria-label="Close sidebar"
-              >
-                <X size={24} />
-              </button>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
 
-              <motion.div
-                variants={containerVariants}
-                initial="closed"
-                animate={isMenuOpen ? "open" : "closed"}
-                className="flex flex-col mt-10 bg-gray-700  items-center justify-center h-[700px] px-8 space-y-12">
-                {/* Phone Section */}
-                <motion.div variants={contentVariants} className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full border-2 border-lime-400 flex items-center justify-center">
-                    <Phone className="w-8 h-8 text-lime-400" />
-                  </div>
-                  <h3 className="text-white text-xl font-semibold mb-2">Phone</h3>
-                  <a
-                    href="tel:+2347043635009"
-                    className="text-gray-400 hover:text-lime-400 transition-colors duration-200"
-                  >
-                    +234 704 363 5009
-                  </a>
-                </motion.div>
-
-                {/* Email Section */}
-                <motion.div variants={contentVariants} className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full border-2 border-lime-400 flex items-center justify-center">
-                    <Mail className="w-8 h-8 text-lime-400" />
-                  </div>
-                  <h3 className="text-white text-xl font-semibold mb-2">Email</h3>
-                  <a
-                    href="mailto:zhirmitech@gmail.com"
-                    className="text-gray-400 hover:text-lime-400 transition-colors duration-200"
-                  >
-                    zhirmitech@gmail.com
-                  </a>
-                </motion.div>
-
-                {/* Address Section */}
-                <motion.div variants={contentVariants} className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full border-2 border-lime-400 flex items-center justify-center">
-                    <MapPin className="w-8 h-8 text-lime-400" />
-                  </div>
-                  <h3 className="text-white text-xl font-semibold mb-2">Address</h3>
-                  <p className="text-gray-400 leading-relaxed">
-                    Lagos<br />
-                    Nigeria
-                  </p>
-                </motion.div>
-              </motion.div>
-
-            </motion.div>
-
-
-          </div>
-
-          {/* Mobile*/}
-          <button
-            className="md:hidden text-white hover:text-lime-400 transition-colors duration-200"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+        <button
+          type="button"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border text-brand md:hidden"
+          onClick={() => setOpen((value) => !value)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: mobileMenuOpen ? 1 : 0, height: mobileMenuOpen ? 'auto' : 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="md:hidden bg-gray-500 border-t border-gray-800">
-        <div className="px-4 py-4 space-y-4">
-          <a
-            href="/"
-            className={`${pathname === '/' ? 'text-lime-400' : 'text-white'} block hover:text-lime-300 transition-colors duration-200`}
+      {open && (
+        <div id="mobile-menu" className="border-t border-border bg-surface md:hidden">
+          <nav
+            className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6"
+            aria-label="Mobile navigation"
           >
-            Home
-          </a>
-          <a
-            href="/about"
-            className={`${pathname === '/about' ? 'text-lime-400' : 'text-white'} block hover:text-lime-400 transition-colors duration-200`}
-          >
-            About Us
-          </a>
-          <a
-            href="/service"
-            className={`${pathname === '/service' ? 'text-lime-400' : 'text-white'} block hover:text-lime-400 transition-colors duration-200`}
-          >
-            Services
-          </a>
-          <a
-            href="#"
-            className="block text-white hover:text-lime-400 transition-colors duration-200"
-          >
-            Pages
-          </a>
-          <a
-            href="/contact"
-            className={`${pathname === '/contact' ? 'text-lime-400' : 'text-white'} block hover:text-lime-400 transition-colors duration-200`}
-          >
-            Contact Us
-          </a>
+            {site.nav.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={`rounded-lg px-3 py-3 text-base font-medium transition-colors ${isActive(link.href)
+                  ? "bg-accent/10 text-accent-ink"
+                  : "text-foreground hover:bg-background"
+                  }`}
+                aria-current={isActive(link.href) ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            ))}
 
-          <div className="flex items-center space-x-4 pt-4 border-t border-gray-800">
-            <a
-              href="#"
-              className="text-white hover:text-lime-400 transition-colors duration-200"
-              aria-label="Twitter"
+            <div className="mt-4 space-y-2 border-t border-border pt-4 text-sm text-muted">
+              <a
+                href={`mailto:${site.email}`}
+                className="flex items-center gap-2 px-3 py-2 hover:text-accent-ink"
+              >
+                <Mail className="h-4 w-4" />
+                {site.email}
+              </a>
+              <a
+                href={site.phoneHref}
+                className="flex items-center gap-2 px-3 py-2 hover:text-accent-ink"
+              >
+                <Phone className="h-4 w-4" />
+                {site.phone}
+              </a>
+            </div>
+
+            <Link
+              href={site.bookingUrl}
+              onClick={() => setOpen(false)}
+              className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
             >
-              <Twitter size={20} />
-            </a>
-            <a
-              href="#"
-              className="text-white hover:text-lime-400 transition-colors duration-200"
-              aria-label="Facebook"
-            >
-              <Facebook size={20} />
-            </a>
-            <a
-              href="#"
-              className="text-white hover:text-lime-400 transition-colors duration-200"
-              aria-label="Instagram"
-            >
-              <Instagram size={20} />
-            </a>
-          </div>
+              Book a free call
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </nav>
         </div>
-      </motion.div>
-    </motion.nav>
+      )}
+    </header>
   );
 }

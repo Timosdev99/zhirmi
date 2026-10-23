@@ -1,213 +1,96 @@
-'use client'
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, Variants } from 'framer-motion';
-import { ArrowUpRight, Phone, Database, Target, Users, TrendingUp } from 'lucide-react';
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Check } from "lucide-react";
+import { site } from "@/content/site";
+
+const beliefs = [
+  "Clear prices, agreed before work starts.",
+  "Plain-English updates, not jargon.",
+  "Work that pays for itself.",
+];
 
 export default function AboutSection() {
-  const services = [
-    "Cloud Solutions",
-    "IT Consulting",
-    "Technology Strategy",
-    "Business Solutions",
-    "Analytics",
-    "Cloud Solutions",
-    "IT Consulting",
-    "Technology Strategy"
-  ];
-
-  const container: Variants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-      },
-    },
-  };
-
-  const item: Variants = {
-    hidden: { opacity: 0, y: 50 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
-  };
-
-  const starVariant: Variants = {
-    twinkle: {
-      opacity: [0.5, 1, 0.5],
-      transition: {
-        duration: 1.5,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
-
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y1 = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
-  const y2 = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-
   return (
-    <section className="bg-black text-white">
+    <section className="bg-background">
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7">
+            <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-accent-ink">
+              <span aria-hidden>✱</span>
+              About
+            </p>
+            <h1 className="mt-3 font-display text-4xl font-bold leading-tight text-brand sm:text-5xl">
+              Built by a hands-on tech partner, backed by a team of specialists.
+            </h1>
 
-      <div className="bg-lime-400 mt-16 text-black py-6 overflow-hidden">
-        <div className="flex animate-marquee whitespace-nowrap">
-          {[...services, ...services].map((service, index) => (
-            <React.Fragment key={index}>
-              <span className="text-3xl font-bold mx-8">{service}</span>
-              <span className="text-3xl font-bold mx-8">✱</span>
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <motion.div style={{ y: y1 }} whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src="https://res.cloudinary.com/dmgf16qzz/image/upload/v1766623072/WhatsApp_Image_2025-12-20_at_11.04.53_PM_gac2wf.jpg"
-                alt="Team collaboration"
-                className="w-full h-auto"
-              />
-            </motion.div>
-
-
-            <div className="absolute -bottom-8 -left-8 grid grid-cols-5 gap-2">
-              {[...Array(15)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  variants={starVariant}
-                  animate="twinkle"
-                  style={{ transitionDelay: `${i * 0.1}s` }}
-                  className="text-lime-400 text-xl"
-                >✱</motion.div>
-              ))}
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
+              <p>
+                Zhirmitech was founded by Samuel Ogbegun, a web developer and
+                digital marketer who has spent years building and running
+                websites, email marketing, CRMs and booking systems for clinics,
+                law firms, construction companies, bakeries and e-commerce brands
+                across the UK, US, Australia and Nigeria.
+              </p>
+              <p>
+                Along the way, clients kept asking for more: &ldquo;Can you also
+                run our emails? Set up our ads? Make our videos? Answer our
+                chats?&rdquo; Zhirmitech is the answer: one partner you trust,
+                with a network of vetted specialists for every part of your
+                business&apos;s tech and growth.
+              </p>
             </div>
 
-            {/* 3d sphere */}
-            <div className="hidden lg:block absolute -right-20 top-1/2 -translate-y-1/2">
-              <div className="w-64 h-64 rounded-full bg-gradient-to-br from-gray-800 to-gray-900 opacity-50 blur-sm"></div>
+            <div className="mt-8 rounded-2xl border border-border bg-surface p-6">
+              <h2 className="font-display text-lg font-bold text-brand">
+                What we believe
+              </h2>
+              <ul className="mt-4 space-y-3">
+                {beliefs.map((belief) => (
+                  <li key={belief} className="flex items-start gap-3 text-sm">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-ink" />
+                    <span className="text-foreground">{belief}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href={site.bookingUrl}
+                className="group inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+              >
+                Book a free call
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+              <Link
+                href="/join"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-6 py-3 text-sm font-semibold text-brand transition-colors hover:border-accent-ink hover:text-accent-ink"
+              >
+                Join the network
+              </Link>
             </div>
           </div>
 
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            <motion.div variants={item} className="flex items-center space-x-2 mb-4">
-              <div className="w-6 h-6 bg-lime-400 rounded-full flex items-center justify-center">
-                <div className="w-3 h-3 border-2 border-black rounded"></div>
-              </div>
-              <span className="text-sm uppercase tracking-wider text-lime-400">About Us</span>
-            </motion.div>
+          <div className="lg:col-span-5">
+            <div className="group overflow-hidden rounded-3xl shadow-2xl">
+              <Image
+                src="https://res.cloudinary.com/dmgf16qzz/image/upload/f_auto,q_auto,w_900/v1766623072/WhatsApp_Image_2025-12-20_at_11.04.53_PM_gac2wf.jpg"
+                alt="Samuel Ogbegun, founder of Zhirmitech"
+                width={864}
+                height={1080}
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                className="h-auto w-full transition-transform duration-300 group-hover:scale-105"
+                priority
+              />
+            </div>
 
-            <motion.h2 variants={item} className="text-5xl font-bold mb-6 leading-tight">
-              Empowering brand with <span className="text-lime-400">innovative</span><br />
-              digital solutions
-            </motion.h2>
-
-            <motion.p variants={item} className="text-gray-400 text-lg mb-8 leading-relaxed">
-              We specialize in creating innovative digital solutions that elevate your brand,
-              engage your audience, and drive measurable success.
-            </motion.p>
-
-            <motion.div variants={item} className="bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl p-6 mb-4">
-              <div className="grid grid-cols-2 gap-6">
-                <div className="flex items-start space-x-3">
-                  <motion.div
-                    whileHover={{ rotate: 45, backgroundColor: '#a3e635' }}
-                    transition={{ duration: 0.3 }}
-                    className="w-10 h-10 border-2 border-lime-400 rounded-lg flex items-center justify-center flex-shrink-0 group"
-                  >
-                    <Target className="w-5 h-5 text-lime-400 group-hover:text-white transition-colors" />
-                  </motion.div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Creative Excellence</h3>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <motion.div
-                    whileHover={{ rotate: 45, backgroundColor: '#a3e635' }}
-                    transition={{ duration: 0.3 }}
-                    className="w-10 h-10 border-2 border-lime-400 rounded-lg flex items-center justify-center flex-shrink-0 group"
-                  >
-                    <Database className="w-5 h-5 text-lime-400 group-hover:text-white transition-colors" />
-                  </motion.div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Tailored solutions</h3>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <motion.div
-                    whileHover={{ rotate: 45, backgroundColor: '#a3e635' }}
-                    transition={{ duration: 0.3 }}
-                    className="w-10 h-10 border-2 border-lime-400 rounded-lg flex items-center justify-center flex-shrink-0 group"
-                  >
-                    <Users className="w-5 h-5 text-lime-400 group-hover:text-white transition-colors" />
-                  </motion.div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Client approach</h3>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <motion.div
-                    whileHover={{ rotate: 45, backgroundColor: '#a3e635' }}
-                    transition={{ duration: 0.3 }}
-                    className="w-10 h-10 border-2 border-lime-400 rounded-lg flex items-center justify-center flex-shrink-0 group"
-                  >
-                    <TrendingUp className="w-5 h-5 text-lime-400 group-hover:text-white transition-colors" />
-                  </motion.div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-1">Proven track record</h3>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* CTA */}
-            <motion.div variants={item} className="flex items-center space-x-6">
-              <button className="bg-lime-400 text-black px-8 py-4 rounded-full font-semibold hover:bg-lime-300 transition flex items-center space-x-2 group">
-                <span>More About</span>
-                <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform">
-                  <ArrowUpRight className="w-4 h-4 text-lime-400" />
-                </div>
-              </button>
-
-              <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-lime-400 rounded-full flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-black" />
-                </div>
-                <div>
-                  <p className="text-xs text-gray-400">Need Help!</p>
-                  <a href="tel:+2347043635009" className="text-lg font-semibold hover:text-lime-400 transition">
-                    +234 704 363 5009
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+            <h2 className="mt-6 font-display text-2xl font-bold text-brand">
+              Samuel Ogbegun
+            </h2>
+            <p className="mt-1 text-sm text-muted">Founder &amp; project lead</p>
+          </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .animate-marquee {
-          animation: marquee 5s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }
