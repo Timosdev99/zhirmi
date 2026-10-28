@@ -4,14 +4,16 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import CTASection from "@/component/cta";
 import ServiceProcess from "@/component/serviceProcess";
-import { caseStudies } from "@/content/caseStudies";
 import { servicePageContent } from "@/content/servicePages";
 import {
   serviceCategories,
   serviceChapters,
 } from "@/content/services";
 import { site } from "@/content/site";
+import { getCaseStudies } from "@/lib/caseStudies";
 import { createMetadata } from "@/lib/metadata";
+
+export const revalidate = 60;
 
 type ServicePageProps = {
   params: Promise<{ slug: string }>;
@@ -68,7 +70,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     (item) => item.slug !== category.slug,
   );
 
-  const relatedStudies = caseStudies.filter((study) =>
+  const studies = await getCaseStudies();
+  const relatedStudies = studies.filter((study) =>
     page.caseStudySlugs.includes(study.slug),
   );
 

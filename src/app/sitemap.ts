@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
-import { caseStudies } from "@/content/caseStudies";
 import { serviceCategories } from "@/content/services";
 import { site } from "@/content/site";
+import { getCaseStudies } from "@/lib/caseStudies";
+
+export const revalidate = 3600;
 
 const staticRoutes = [
   { path: "", changeFrequency: "weekly", priority: 1 },
@@ -16,9 +18,10 @@ const staticRoutes = [
   { path: "/cookie-policy", changeFrequency: "yearly", priority: 0.3 },
 ] as const;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = site.url.replace(/\/$/, "");
   const lastModified = new Date();
+  const caseStudies = await getCaseStudies();
 
   return [
     ...staticRoutes.map((route) => ({

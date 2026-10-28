@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ProjectMedia from "@/component/projectMedia";
-import { caseStudies } from "@/content/caseStudies";
+import { getCaseStudies } from "@/lib/caseStudies";
 
-const featured = caseStudies.slice(0, 3);
+export default async function HomeWork() {
+  const featured = (await getCaseStudies()).slice(0, 3);
 
-export default function HomeWork() {
   return (
     <section id="work" className="scroll-mt-24 border-b border-border bg-surface py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

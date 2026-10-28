@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import WorkArchive from "@/component/workArchive";
-import { caseStudies } from "@/content/caseStudies";
+import { getCaseStudies } from "@/lib/caseStudies";
 import { site } from "@/content/site";
 import { createMetadata } from "@/lib/metadata";
+
+export const revalidate = 60;
 
 export const metadata = createMetadata({
   title: "Selected work — Websites, Automation & Care",
@@ -12,7 +14,9 @@ export const metadata = createMetadata({
   path: "/work",
 });
 
-export default function WorkPage() {
+export default async function WorkPage() {
+  const studies = await getCaseStudies();
+
   return (
     <div className="bg-background">
       <section className="mx-auto max-w-7xl px-4 pb-20 pt-16 sm:px-6 lg:px-8">
@@ -27,13 +31,13 @@ export default function WorkPage() {
             A closer look at the sites, systems and support behind the work.
           </p>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-            {String(caseStudies.length).padStart(2, "0")} projects
+            {String(studies.length).padStart(2, "0")} projects
           </p>
         </div>
       </section>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <WorkArchive />
+        <WorkArchive studies={studies} />
       </div>
 
       <section className="border-t border-border bg-brand py-16 text-white">

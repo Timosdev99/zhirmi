@@ -4,26 +4,29 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import CTASection from "@/component/cta";
 import ProjectMedia from "@/component/projectMedia";
-import { caseStudies } from "@/content/caseStudies";
 import { serviceCategories } from "@/content/services";
 import { site } from "@/content/site";
+import { getCaseStudies } from "@/lib/caseStudies";
 import { createMetadata } from "@/lib/metadata";
+
+export const revalidate = 60;
+export const dynamicParams = true;
 
 type CaseStudyPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return caseStudies.map((study) => ({ slug: study.slug }));
+export async function generateStaticParams() {
+  const studies = await getCaseStudies();
+  return studies.map((study) => ({ slug: study.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: CaseStudyPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const study = caseStudies.find((item) => item.slug === slug);
+  const studies = await getCaseStudies();
+  const study = studies.find((item) => item.slug === slug);
 
   if (!study) {
     return {};
@@ -38,7 +41,8 @@ export async function generateMetadata({
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { slug } = await params;
-  const study = caseStudies.find((item) => item.slug === slug);
+  const studies = await getCaseStudies();
+  const study = studies.find((item) => item.slug === slug);
 
   if (!study) {
     notFound();
@@ -48,7 +52,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     study.serviceSlugs.includes(service.slug),
   );
 
-  const relatedStudies = caseStudies
+  const relatedStudies = studies
     .filter((item) => item.slug !== study.slug)
     .sort((a, b) => {
       const aScore = a.serviceSlugs.filter((service) =>

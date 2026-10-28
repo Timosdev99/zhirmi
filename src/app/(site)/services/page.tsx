@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import CTASection from "@/component/cta";
-import { caseStudies } from "@/content/caseStudies";
 import {
   serviceCategories,
   serviceChapters,
@@ -9,7 +8,10 @@ import {
   serviceStartPoints,
 } from "@/content/services";
 import { site } from "@/content/site";
+import { getCaseStudies } from "@/lib/caseStudies";
 import { createMetadata } from "@/lib/metadata";
+
+export const revalidate = 60;
 
 export const metadata = createMetadata({
   title: "Services — Websites, Growth, AI & Systems",
@@ -32,7 +34,9 @@ const capabilities = [
   "We keep the day-to-day operations moving after launch.",
 ];
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const studies = await getCaseStudies();
+
   return (
     <div className="bg-background">
       <section className="border-b border-border">
@@ -264,7 +268,7 @@ export default function ServicesPage() {
           </div>
 
           <div className="mt-12 divide-y divide-border border-y border-border">
-            {caseStudies.slice(0, 3).map((study, index) => (
+            {studies.slice(0, 3).map((study, index) => (
               <Link
                 key={study.slug}
                 href={`/work/${study.slug}`}

@@ -1,9 +1,13 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { caseStudies } from "@/content/caseStudies";
+import type { CaseStudy } from "@/content/types";
 
-export default function PortfolioSection() {
-  const featured = caseStudies.slice(0, 3);
+type PortfolioSectionProps = {
+  studies: CaseStudy[];
+};
+
+export default function PortfolioSection({ studies }: PortfolioSectionProps) {
+  const featured = studies.slice(0, 3);
 
   return (
     <section className="border-t border-border bg-background py-20">

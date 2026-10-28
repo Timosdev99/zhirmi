@@ -4,11 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
-import { caseStudies } from "@/content/caseStudies";
+import type { CaseStudy } from "@/content/types";
 
-export default function WorkArchive() {
+type WorkArchiveProps = {
+  studies: CaseStudy[];
+};
+
+export default function WorkArchive({ studies }: WorkArchiveProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const active = caseStudies[activeIndex];
+  const active = studies[activeIndex] ?? studies[0];
+
+  if (!active) {
+    return null;
+  }
 
   return (
     <div
@@ -17,7 +25,7 @@ export default function WorkArchive() {
       className="grid gap-12 pb-16 lg:grid-cols-2 lg:items-start"
     >
       <div>
-        {caseStudies.map((study, index) => {
+        {studies.map((study, index) => {
           const isActive = index === activeIndex;
 
           return (

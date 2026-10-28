@@ -9,6 +9,8 @@ import HomeWork from "@/component/home/work";
 import TestimonialsSection from "@/component/testimonies";
 import { createMetadata } from "@/lib/metadata";
 
+export const revalidate = 60;
+
 export const metadata = createMetadata({
   title: "Zhirmitech — Websites, Marketing, AI & Operations",
   description:
