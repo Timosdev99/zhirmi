@@ -1,7 +1,7 @@
 import type { NavLink } from "./types";
 
 export const site = {
-  name: "Zhirmitech",
+  name: "ZhirmiTech",
   tagline: "Your business's tech and growth partner.",
   description:
     "Websites, SEO, email marketing, AI agents and automation for UK and US businesses. One point of contact, a team of specialists.",

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import CTASection from "@/component/cta";
+import ProjectMedia from "@/component/projectMedia";
 import { caseStudies } from "@/content/caseStudies";
 import { serviceCategories } from "@/content/services";
 import { site } from "@/content/site";
@@ -67,7 +68,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     description: study.summary,
     genre: "Case study",
     about: study.industry ?? study.client,
-    keywords: study.tools.join(", "),
+    keywords: (study.tools ?? []).join(", "),
     creator: {
       "@type": "Organization",
       name: site.name,
@@ -167,27 +168,37 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                       </dd>
                     </div>
 
-                    <div>
-                      <dt className="text-xs font-semibold uppercase tracking-wider text-muted">
-                        Tools
-                      </dt>
-                      <dd className="mt-2 flex flex-wrap gap-2">
-                        {study.tools.map((tool) => (
-                          <span
-                            key={tool}
-                            className="rounded-full bg-background px-3 py-1 text-xs font-medium text-muted"
-                          >
-                            {tool}
-                          </span>
-                        ))}
-                      </dd>
-                    </div>
+                    {study.tools && study.tools.length > 0 && (
+                      <div>
+                        <dt className="text-xs font-semibold uppercase tracking-wider text-muted">
+                          Tools
+                        </dt>
+                        <dd className="mt-2 flex flex-wrap gap-2">
+                          {study.tools.map((tool) => (
+                            <span
+                              key={tool}
+                              className="rounded-full bg-background px-3 py-1 text-xs font-medium text-muted"
+                            >
+                              {tool}
+                            </span>
+                          ))}
+                        </dd>
+                      </div>
+                    )}
                   </dl>
                 </div>
               </aside>
             </div>
           </div>
         </section>
+
+        {study.imageUrl && (
+          <section className="border-b border-border bg-surface py-10 sm:py-12">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <ProjectMedia study={study} layout="case" />
+            </div>
+          </section>
+        )}
 
         <section className="py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

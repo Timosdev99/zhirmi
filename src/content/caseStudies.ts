@@ -2,6 +2,104 @@ import type { CaseStudy } from "./types";
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: "west-coast-granny-flats",
+    client: "West Coast Granny Flats",
+    industry: "Home design and construction",
+    imageUrl:
+      "https://res.cloudinary.com/dmgf16qzz/image/upload/v1793084250/west-coast-granny-flats_hdqhzg.webp",
+    mobileImageUrl:
+      "https://res.cloudinary.com/dmgf16qzz/image/upload/v1793199856/westcoast_wkmjsv.jpg",
+    mobileImageWidth: 992,
+    mobileImageHeight: 2048,
+    summary:
+      "Wix landing pages and model pages for a home-design business, built to present options clearly and capture enquiries.",
+    problem:
+      "The business needed to present its home models clearly and give visitors a straightforward way to enquire.",
+    approach: [
+      "Built Wix landing pages for the main offers.",
+      "Created model pages that compare the options.",
+      "Added a consistent enquiry path across the pages.",
+    ],
+    scope: ["Wix landing pages", "Model pages", "Enquiry capture"],
+    tools: ["Wix"],
+    outcome: [
+      "A clear set of model and landing pages.",
+      "Visitors can move from browsing options to enquiring in a few steps.",
+    ],
+    serviceSlugs: ["websites", "marketing"],
+  },
+  {
+    slug: "castafrika",
+    client: "CastAfrika",
+    industry: "Creative talent marketplace",
+    imageUrl:
+      "https://res.cloudinary.com/dmgf16qzz/image/upload/v1793084500/castafrika_lrm4ro.jpg",
+    imageWidth: 1343,
+    imageHeight: 682,
+    mobileImageUrl:
+      "https://res.cloudinary.com/dmgf16qzz/image/upload/v1793193862/castafrikamobile_uybleh.jpg",
+    mobileImageWidth: 227,
+    mobileImageHeight: 472,
+    summary:
+      "A two-sided marketplace website connecting brands with African creatives, with separate paths for talent and hiring teams.",
+    problem:
+      "CastAfrika needed to explain a two-sided creative marketplace quickly and give both creatives and clients a clear way in.",
+    approach: [
+      "Built the homepage around a split-audience switch for creatives and hiring teams.",
+      "Used a bold typographic system to make the value proposition immediate.",
+      "Designed the same hierarchy to hold up on mobile, with clear join and login actions.",
+    ],
+    scope: [
+      "Website design",
+      "Two-sided marketplace positioning",
+      "Creative and client journeys",
+      "Responsive desktop and mobile layouts",
+      "Join and login flows",
+    ],
+    outcome: [
+      "Creatives and hiring teams each get a direct route into the platform.",
+      "The value proposition reads clearly on desktop and mobile.",
+      "Join and login actions stay visible at the top of the page.",
+    ],
+    serviceSlugs: ["websites"],
+  },
+  {
+    slug: "prep-byme",
+    client: "Prep Byme",
+    industry: "Warehousing and Amazon FBA",
+    imageUrl:
+      "https://res.cloudinary.com/dmgf16qzz/image/upload/v1793198827/prep_haoqwu.jpg",
+    imageWidth: 1350,
+    imageHeight: 677,
+    mobileImageUrl:
+      "https://res.cloudinary.com/dmgf16qzz/image/upload/v1793199171/prepmobile_qcsdju.jpg",
+    mobileImageWidth: 1065,
+    mobileImageHeight: 2048,
+    summary:
+      "A website for a Burton-on-Trent Amazon FBA prep and warehousing company, covering receiving, inspection, labelling, storage and shipping, with pricing, a quote calculator, a blog, live chat and review proof.",
+    problem:
+      "Amazon sellers needed one place to understand the prep services, compare costs and request a quote without calling first.",
+    approach: [
+      "Structured the site around the services sellers need: receiving, inspection, FNSKU labelling, polybags, bundling, pallet processing, storage and returns.",
+      "Added pricing and a quote calculator so sellers can estimate a job before enquiring.",
+      "Used Trustpilot and Google review proof alongside live chat to answer questions and build trust.",
+    ],
+    scope: [
+      "Website design and build",
+      "Service and pricing pages",
+      "Quote calculator",
+      "Blog and content structure",
+      "Live chat and enquiry flows",
+      "Trustpilot and Google review proof",
+    ],
+    outcome: [
+      "Sellers can compare services, estimate costs and request a quote in one place.",
+      "Review proof and live chat answer questions before an enquiry.",
+      "The service range is easier to scan on desktop and mobile.",
+    ],
+    serviceSlugs: ["websites"],
+  },
+  {
     slug: "wolfs-bakery",
     client: "Wolf's Bakery",
     industry: "Bakery and hospitality",
@@ -78,27 +176,6 @@ export const caseStudies: CaseStudy[] = [
       "The team can see and manage leads in one pipeline.",
     ],
     serviceSlugs: ["ai-automation", "websites"],
-  },
-  {
-    slug: "west-coast-granny-flats",
-    client: "West Coast Granny Flats",
-    industry: "Home design and construction",
-    summary:
-      "Wix landing pages and model pages for a home-design business, built to present options clearly and capture enquiries.",
-    problem:
-      "The business needed to present its home models clearly and give visitors a straightforward way to enquire.",
-    approach: [
-      "Built Wix landing pages for the main offers.",
-      "Created model pages that compare the options.",
-      "Added a consistent enquiry path across the pages.",
-    ],
-    scope: ["Wix landing pages", "Model pages", "Enquiry capture"],
-    tools: ["Wix"],
-    outcome: [
-      "A clear set of model and landing pages.",
-      "Visitors can move from browsing options to enquiring in a few steps.",
-    ],
-    serviceSlugs: ["websites", "marketing"],
   },
   {
     slug: "dawg-team",

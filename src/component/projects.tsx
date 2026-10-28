@@ -50,16 +50,18 @@ export default function PortfolioSection() {
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
                 {study.summary}
               </p>
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {study.tools.map((tool) => (
-                  <li
-                    key={tool}
-                    className="rounded-full bg-background px-3 py-1 text-xs font-medium text-muted"
-                  >
-                    {tool}
-                  </li>
-                ))}
-              </ul>
+              {study.tools && study.tools.length > 0 && (
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {study.tools.map((tool) => (
+                    <li
+                      key={tool}
+                      className="rounded-full bg-background px-3 py-1 text-xs font-medium text-muted"
+                    >
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
+              )}
               <Link
                 href={`/work/${study.slug}`}
                 className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-accent-ink transition-colors hover:text-brand"

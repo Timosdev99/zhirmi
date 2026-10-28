@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import ProjectMedia from "@/component/projectMedia";
 import { caseStudies } from "@/content/caseStudies";
 
 const featured = caseStudies.slice(0, 3);
@@ -32,8 +33,8 @@ export default function HomeWork() {
               key={study.slug}
               className="border-t border-border pt-8"
             >
-              <div className="grid gap-8 lg:grid-cols-12 lg:gap-8">
-                <div className="lg:col-span-2">
+              <div className="flex flex-col gap-6 lg:grid lg:grid-cols-12 lg:gap-8">
+                <div className="order-1 lg:order-none lg:col-span-2">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-ink">
                     Project {String(index + 1).padStart(2, "0")}
                   </p>
@@ -42,23 +43,34 @@ export default function HomeWork() {
                   </p>
                 </div>
 
-                <div className="lg:col-span-5">
-                  <h3 className="font-display text-3xl font-bold tracking-tight text-brand sm:text-4xl">
-                    {study.client}
-                  </h3>
-                  <p className="mt-4 text-base leading-relaxed text-muted">
-                    {study.summary}
-                  </p>
+                <div className="order-2 lg:order-none lg:col-span-5">
+                  <div className="flex items-start justify-between gap-4 lg:block">
+                    <div>
+                      <h3 className="font-display text-3xl font-bold tracking-tight text-brand sm:text-4xl">
+                        {study.client}
+                      </h3>
+                      <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+                        {study.summary}
+                      </p>
+                    </div>
+                    <Link
+                      href={`/work/${study.slug}`}
+                      className="group mt-1 inline-flex shrink-0 items-center gap-2 whitespace-nowrap border-b border-brand/30 pb-1 text-xs font-semibold text-brand transition-colors hover:border-accent-ink hover:text-accent-ink lg:hidden"
+                    >
+                      Case study
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                  </div>
                   <Link
                     href={`/work/${study.slug}`}
-                    className="group mt-6 inline-flex items-center gap-2 border-b border-brand/30 pb-1 text-sm font-semibold text-brand transition-colors hover:border-accent-ink hover:text-accent-ink"
+                    className="group mt-6 hidden items-center gap-2 border-b border-brand/30 pb-1 text-sm font-semibold text-brand transition-colors hover:border-accent-ink hover:text-accent-ink lg:inline-flex"
                   >
                     View case study
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                 </div>
 
-                <div className="grid gap-6 sm:grid-cols-2 lg:col-span-5">
+                <div className="order-4 grid gap-6 sm:grid-cols-2 lg:order-none lg:col-span-5">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-ink">
                       The problem
@@ -86,7 +98,14 @@ export default function HomeWork() {
                     </ul>
                   </div>
                 </div>
+
+                {study.imageUrl && (
+                  <div className="order-3 lg:order-none lg:col-span-12">
+                    <ProjectMedia study={study} />
+                  </div>
+                )}
               </div>
+
             </article>
           ))}
         </div>

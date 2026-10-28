@@ -103,11 +103,17 @@ export type CaseStudy = {
   slug: string;
   client: string;
   industry?: string;
+  imageUrl?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  mobileImageUrl?: string;
+  mobileImageWidth?: number;
+  mobileImageHeight?: number;
   summary: string;
   problem: string;
   approach: string[];
   scope: string[];
-  tools: string[];
+  tools?: string[];
   outcome: string[];
   serviceSlugs: string[];
 };
