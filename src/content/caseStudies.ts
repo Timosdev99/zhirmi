@@ -50,7 +50,7 @@ export const caseStudies: CaseStudy[] = [
       "Designed the same hierarchy to hold up on mobile, with clear join and login actions.",
     ],
     scope: [
-      "Website design",
+      "Website design and development ",
       "Two-sided marketplace positioning",
       "Creative and client journeys",
       "Responsive desktop and mobile layouts",
@@ -85,7 +85,7 @@ export const caseStudies: CaseStudy[] = [
       "Used Trustpilot and Google review proof alongside live chat to answer questions and build trust.",
     ],
     scope: [
-      "Website design and build",
+      "Website design and development",
       "Service and pricing pages",
       "Quote calculator",
       "Blog and content structure",
